@@ -5,7 +5,7 @@
 #include "system_gd32vf103.h"
 
 #define USB_BUFFER_SIZE 512
-#define TIMEOUT_PRINTF 100000
+#define TIMEOUT_PRINTF 1000000
 typedef struct{
     uint8_t buffer[USB_BUFFER_SIZE];
     uint32_t max_size;
@@ -71,6 +71,10 @@ void configure_usb_serial(){
 
 int usb_serial_available(){return USBD_CONFIGURED == USB_OTG_dev.dev.cur_status;}
 
+void usb_serial_flush() {
+    int64_t temp = get_timer_value();
+    while ((packet_sent == 0) && ((temp + TIMEOUT_PRINTF) > get_timer_value()));
+}
 
 //TODO Risk of overflow when printing large amounts of text, should probably do some length checking
 
