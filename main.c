@@ -19,7 +19,7 @@
 #include "eclicw.h"
 
 // Set to 1 to use SD card, 0 to output data over serial
-#define USE_SDCARD 1
+#define USE_SDCARD 0
 
 #define NUMBER_OF_GESTURES 3
 #define MEASUREMENTS_OF_EACH_GESTURE 100
